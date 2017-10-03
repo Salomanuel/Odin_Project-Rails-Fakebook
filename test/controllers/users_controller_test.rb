@@ -1,7 +1,6 @@
 class UsersControllerTest < ActionDispatch::IntegrationTest
 
 	test "it should have an index page" do
-		skip
 		get users_path
 		assert_response :success
 		assert_select "title", "All Users"
