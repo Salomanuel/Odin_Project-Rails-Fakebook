@@ -16,4 +16,10 @@ class BaseControllerTest < ActionDispatch::IntegrationTest
 		assert_select "h1", "About"
 	end
 
+	test "should get signup" do
+		get signup_path
+		assert_response :success
+		assert_select "title", "Sign Up"
+		assert_select "h1", "Sign Up"
+	end
 end
