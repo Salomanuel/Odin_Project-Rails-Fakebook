@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
 	root 'base#index'
-	get '/about', to: 'base#about'
+	get '/about', 	to: 'base#about'
+	get '/signup', 	to: 'users#new'
 	
-	resources :users, :only	=> [:index, :show]
+	resources :users, :only	=> [:index, :show, :new, :create]
 
 end
