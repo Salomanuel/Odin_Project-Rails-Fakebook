@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <nav>
+    	<%= link_to "home",				root_path %>
+    	<%= link_to "Signup", 	signup_path %>
+    	<%= link_to "All users", users_path %>
+    </nav>
     <%= yield %>
   </body>
 </html>
