@@ -8,4 +8,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  # def log_in_as(user)
+  # 	session[:user_id] = user.name
+  # end
+
+  def current_user			# not sure it works, I think it's a fake method, it just doesn't return NOT NIL
+  	session[:user_id]
+  end
 end

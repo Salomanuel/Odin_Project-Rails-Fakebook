@@ -16,7 +16,13 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
 	end
 
 	test "layout links while logged in" do
-		log_in_as(@user)
+		# skip
+		get login_path
+		assert_select "h1", "Log In"
+		post login_path, params: { session: { name: @user.name } }
+		# puts "UOOOOOOOO"
+		# puts "current_user.nil? #{current_user.nil?}"
+		assert_not current_user.nil?
 		get root_path
 		assert_select "a[href=?]", root_path
 		# assert_select "a[href=?]", about_path
