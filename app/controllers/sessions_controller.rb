@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
 	def new
 	end
 
@@ -14,4 +13,8 @@ class SessionsController < ApplicationController
 		end
 	end
 
+	def destroy
+		session[:user_id] = nil # CHANGE THIS TO EMAIL
+		redirect_to root_path
+	end
 end
