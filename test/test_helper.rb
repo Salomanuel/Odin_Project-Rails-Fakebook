@@ -15,4 +15,8 @@ class ActiveSupport::TestCase
   def current_user			# not sure it works, I think it's a fake method, it just doesn't return NOT NIL
   	session[:user_id]
   end
+
+  def logged_in?
+  	current_user
+  end
 end

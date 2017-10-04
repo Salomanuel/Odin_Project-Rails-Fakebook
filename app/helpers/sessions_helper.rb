@@ -10,4 +10,8 @@ module SessionsHelper
   	end
   	# for sessions, it will become more complex
   end
+
+  def logged_in?
+  	!current_user.nil?
+  end
 end

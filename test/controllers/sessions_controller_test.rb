@@ -13,10 +13,20 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 		get users_path
 		assert_redirected_to login_path
 		get user_path(@user)
-		assert_redirected_to root_path
+		assert_redirected_to login_path
 	end
 
-	test "should not redirect when logged in" do
+	test "it should have a profile and an index page when logged in" do
+		get login_path
+		post login_path params: { session: { name: @user.name } }
+		get users_path
+		assert_response :success
+		assert_select "title", "All Users"
+		assert_select "h1", "All Users"
+		get user_path(@user)
+		assert_response :success
+		assert_select "title", "#{@user.name}"
+		assert_select "h1", "#{@user.name}"
 	end
 
 end
