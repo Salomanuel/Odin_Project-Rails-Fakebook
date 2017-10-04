@@ -7,10 +7,16 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 		@user2 	= users(:marion)
 	end
 
-	# test "should redirect users index when not logged in" do
-	# 	skip
-	# 	get users_path
-	# 	assert redirected_to login_path
-	# end
+	test "should redirect restricted pages when not logged in" do
+		get about_path
+		assert_select "h1", "About"
+		get users_path
+		assert_redirected_to login_path
+		get user_path(@user)
+		assert_redirected_to root_path
+	end
+
+	test "should not redirect when logged in" do
+	end
 
 end
