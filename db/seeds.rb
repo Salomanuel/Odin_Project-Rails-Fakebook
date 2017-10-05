@@ -2,7 +2,7 @@ User::delete_all
 Friendship::delete_all
 
 20.times do |n|
-	name = "User##{n}"
+	name = Faker::Pokemon.name
 	User.create!(name: name)
 end
 
