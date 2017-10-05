@@ -18,10 +18,19 @@
 	</h2>
 <% end %>
 
-
-<h2><%= @user.friended.count %> Friends</h2>
+<h2><%= @requests.count %> Friendships Requests</h2>
 <ul>
-	<% @user.friended.all.each do |friend| %>
-		<li><%= link_to friend.name, friend %></li>
+	<% @requests.all.each do |request| %>
+		<li>
+			<%= link_to request.friended.name, request.friended %>	
+		</li>
+	<% end %>
+</ul>
+
+
+<h2><%= @friends.count %> Friends</h2>
+<ul>
+	<% @friends.all.each do |friend| %>
+		<li><%= link_to friend.friended.name, friend.friended %></li>
 	<% end %>
 </ul>

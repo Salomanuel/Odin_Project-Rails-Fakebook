@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 	def show
 		@user  			= User.find(params[:id])
 		@friendship = current_user.friendships.new
+		@friends    = @user.friendships.where(accepted: true)
+		@requests   = @user.friendships.where(accepted: false)
 	end
 
 	def new
