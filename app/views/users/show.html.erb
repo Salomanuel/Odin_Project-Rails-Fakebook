@@ -2,12 +2,17 @@
 
 <h1><%= @user.name %></h1>
 
-<h2>
-	<%= form_for @friendship do |f| %>
-		<%= f.hidden_field :friended_id, :value => @user.id  %>
-		<%= f.submit("Send a Friendship request") %>
-	<% end %>
-</h2>
+<% if im_friend_of(@user) %>
+	<h2> big friends </h2>
+<% else %>
+	<h2>
+		<%= form_for @friendship do |f| %>
+			<%= f.hidden_field :friended_id, :value => @user.id  %>
+			<%= f.submit("Send a Friendship request") %>
+		<% end %>
+	</h2>
+<% end %>
+
 
 <h2>Friends</h2>
 <ul>
