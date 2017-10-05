@@ -7,6 +7,9 @@ module SessionsHelper
   	# if it exists there, take it and call it a day
   	if 		(user_id = session[:user_id]) 
   		@current_user ||= User.find(user_id)
+      return @current_user
+    else
+      return nil
   	end
   	# for sessions, it will become more complex
   end

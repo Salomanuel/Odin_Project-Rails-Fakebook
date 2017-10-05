@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	include SessionsHelper
 	# before_action :logged_in_user, except: [:new, :create]
 
 	def index
@@ -6,7 +7,8 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user  = User.find(params[:id])
+		@user  			= User.find(params[:id])
+		@friendship = current_user.friendships.new
 	end
 
 	def new

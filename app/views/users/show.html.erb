@@ -2,6 +2,13 @@
 
 <h1><%= @user.name %></h1>
 
+<h2>
+	<%= form_for @friendship do |f| %>
+		<%= f.hidden_field :friended_id, :value => @user.id  %>
+		<%= f.submit("Send a Friendship request") %>
+	<% end %>
+</h2>
+
 <h2>Friends</h2>
 <ul>
 	<% @user.friended.all.each do |friend| %>
