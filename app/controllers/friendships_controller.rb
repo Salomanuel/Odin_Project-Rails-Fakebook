@@ -14,10 +14,15 @@ class FriendshipsController < ApplicationController
 	end
 
 	def destroy
-		@friendship = Friendship.find(params[:id])
-		@ex_friend  = @friendship.friended
-		@friendship.destroy
-		redirect_to @ex_friend
+		friendship  = Friendship.find(params[:id])
+		ex_friend   = friendship.friended
+		friendship.destroy
+
+		# reverse friendship
+		friendship2 = Friendship.find_by(friended: current_user, friender: ex_friend)
+		friendship2.destroy
+
+		redirect_to ex_friend
 	end
 
 	private
