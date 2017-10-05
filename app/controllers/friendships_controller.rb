@@ -1,18 +1,21 @@
 class FriendshipsController < ApplicationController
 	include SessionsHelper
+	include FriendshipsHelper
 
 	def create
 		@friendship = current_user.friendships.new(friendship_params)
 		if @friendship.save
-			redirect_to current_user
+			redirect_to @friendship.friended
 		else
 			render inline: "<h1>oh no</h1"
 		end
 	end
 
 	def destroy
-		@friendship = current_user.friendships.find_by(friended_id: @user.id).destroy
-		redirect_to @user
+		@friendship = Friendship.find(params[:id])
+		@ex_friend  = @friendship.friended
+		@friendship.destroy
+		redirect_to @ex_friend
 	end
 
 	private
