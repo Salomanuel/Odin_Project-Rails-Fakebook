@@ -10,8 +10,13 @@ class FriendshipsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@friendship = current_user.friendships.find_by(friended_id: @user.id).destroy
+		redirect_to @user
+	end
+
 	private
 		def friendship_params
-			params.require(:friendship).permit(:friender_id, :friended_id)
+			params.require(:friendship).permit(:friended_id)
 		end
 end
