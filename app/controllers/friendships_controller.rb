@@ -5,6 +5,8 @@ class FriendshipsController < ApplicationController
 	def create
 		@friendship = current_user.friendships.new(friendship_params)
 		if @friendship.save
+			# reverse friendship
+			@friendship.friended.friendships.new(friended_id: current_user.id).save
 			redirect_to @friendship.friended
 		else
 			render inline: "<h1>oh no</h1"
